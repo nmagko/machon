@@ -14,6 +14,8 @@ computer availability with ICMP packets. It uses raw sockets to reduce
 bandwidth and it shows round trip time with different colors. It runs
 under GNU/Linux Operating Systems and Windows through Cygwin.
 
+![Screenshot](machon.png)
+
 ### DEPENDS
 
 - make
