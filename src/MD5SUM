@@ -1,0 +1,11 @@
+6db7a5cce8670cd39ff15c91707e825e  ./README
+2b951197aaf40fff6d19b357876555d5  ./Makefile.unix
+4be02e67d37c59df5710fd75b733dc7f  ./Makefile.cygwin
+f20161617cd8efb48a75c21c515658ea  ./resolvname.c
+91e3b9735672a6a2dec44ab1b0c6b2c3  ./machon.c
+355ce354fef0c3e7213826bbe3396468  ./machonanal.pl
+2b951197aaf40fff6d19b357876555d5  ./Makefile
+4048d88e420155bc6a6a3b953423b175  ./pinga.h
+d2e6018ecada7dcbc2e04227e99a7e09  ./hole.c
+d32239bcb673463ab874e80d47fae504  ./COPYING
+459f83e9f74006dbd4db9043e76c5a64  ./pinga.c

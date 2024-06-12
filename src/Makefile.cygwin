@@ -1,0 +1,64 @@
+# Makefile
+# Copyright (C) 2006,2012  Victor C Salas Pumacayo (aka nmag)
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+CC        = gcc
+CP	  = cp
+RM        = rm
+COPTS     = -O1 -DCYGWIN32 -Wno-sequence-point
+CCFLAGS   = -Wall $(COPTS) 
+PERLFLAGS = -B
+LIBRARIES = 
+CYGWIN32L = -lncurses
+OBJECTDIR = .
+PREFIX    = .
+INSTALL   = install
+MAKE      = make
+STRIP	  = strip
+CHMOD     = chmod
+UREGEX    = ../../liburegex
+INCLUDIR  = -I$(UREGEX) -I/usr/include/ncurses
+MINPACK   = 16
+
+all: lib binary
+
+lib:
+	$(CC) $(CCFLAGS) -c $(OBJECTDIR)/pinga.c
+
+clean:
+	rm -f *~
+	rm -f *.o
+	rm -f *.exe machonanal
+
+binary:
+	$(CC) $(CCFLAGS) $(LIBRARIES) $(INCLUDIR) -o machon $(UREGEX)/uregex.o $(UREGEX)/aarray.o $(UREGEX)/uconfi.o pinga.o machon.c $(CYGWIN32L)
+	$(STRIP) machon
+	$(CP) machonanal.pl machonanal
+	$(CC) $(CCFLAGS) -DTEST_PING -DMINPACK_GCC=$(MINPACK) -o pinga pinga.c
+	$(STRIP) pinga
+	$(CC) $(CCFLAGS) -o hole hole.c
+	$(STRIP) hole
+
+install:
+	$(INSTALL) -v machon.exe /usr/local/bin/
+	$(INSTALL) -v machonanal /usr/local/bin/
+	$(INSTALL) -v pinga.exe /usr/local/bin/
+	$(INSTALL) -v hole.exe /usr/local/bin/
+
+uninstall:
+	$(RM) -f /usr/local/bin/machon
+	$(RM) -f /usr/local/bin/machonanal
+	$(RM) -f /usr/local/bin/pinga
+	$(RM) -f /usr/local/bin/hole
